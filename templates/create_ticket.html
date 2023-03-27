@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% set active_page = "create_ticket" %}
+
+{% block content %}
+    <h1>{% block title %} Add a New Ticket {% endblock %}</h1>
+    
+    <form method="post">
+        <label for="ticket-name">Ticket Name</label>
+        <br>
+        <input type="text" name="ticket-name" placeholder="Ticket Name" value="{{ request.form['ticket-name'] }}">    
+        <br>
+        <br>
+        <label for="ticket-description">Ticket Description</label>
+        <br>
+        <textarea name="ticket-description" placeholder="Ticket description" rows="5" cols="100">
+          {{ request.form['ticket-description'] }}
+        </textarea>
+        <br>
+        <br>
+        <label for="ticket-status">Ticket Status:<br></label>
+        <br>
+        <select name="ticket-status" id="dropdown">
+          <option value="to-do">To Do</option>
+          <option value="in-progress">In Progress</option>
+          <option value="blocked">Blocked</option>
+          <option value="complete">Complete</option>
+        </select>
+        <br>
+        <br>
+        <label for="department">Department:<br></label>
+        <br>
+        <select name="department" id="dropdown">
+          <option value="product">Product</option>
+          <option value="it">IT</option>
+          <option value="sales">Sales</option>
+          <option value="hr">HR</option>
+          <option value="finance">Finance</option>
+        </select>
+        <br>
+        <br>
+        <label for="category">Category:<br></label>
+        <br>
+        <select name="category" id="dropdown">
+          # TODO: add more
+          <option value="development-coding">Development - Coding</option>
+          <option value="development-testing">Development - Testing</option>
+          <option value="development-documenting">Development - Documenting</option>
+        </select>
+        <br>
+        <br>
+        <label for="due-date">Due Date:</label>
+        <br>
+        <input type="date" id="due-date" name="due-date">
+        <br>
+        <br>
+        <button type="submit">Submit</button>
+    </form>
+{% endblock %}
