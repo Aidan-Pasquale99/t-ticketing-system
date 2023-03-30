@@ -1,18 +1,18 @@
 {% extends 'base.html' %}
-{% set active_page = "create_ticket" %}
+
 
 {% block content %}
-    <h1>{% block title %} Add a New Ticket {% endblock %}</h1>
-    <br>
-    <!-- TODO: (nice to do) use loops for the values that use the same view -->
-    <form action="{{ url_for('tickets.create_ticket')}}" method="POST">
+    <h1>{% block title %} Update Ticket {% endblock %}</h1>
+    
+    <!-- TODO: (nice to do) maybe use loops for the values that do not use custom sizes -->
+    <form action="{{ url_for('tickets.update_ticket', ticket_id=ticket.id) }}" method="POST">
       {{ form.csrf_token }}
 
       <!-- ticket name -->
       <p>
           {{ form.ticket_name.label }}
           <br>
-          {{ form.ticket_name(size=20) }}
+          {{ form.ticket_name(size=20, value=ticket.ticket_name) }}
       </p>
 
       {% if form.ticket_name.errors %}
@@ -27,7 +27,7 @@
       <p>
         {{ form.ticket_description.label }}
         <br>
-        {{ form.ticket_description(rows=5, cols=100) }}
+        {{ form.ticket_description(rows=5, cols=100, value=ticket.ticket_description) }}
       </p>
 
       {% if form.ticket_description.errors %}
@@ -42,7 +42,7 @@
       <p>
         {{ form.status.label }}
         <br>
-        {{ form.status }}
+        {{ form.status(value=ticket.status) }}
       </p>
 
       {% if form.status.errors %}
@@ -57,7 +57,7 @@
       <p>
         {{ form.department.label }}
         <br>
-        {{ form.department }}
+        {{ form.department(value=ticket.department) }}
       </p>
 
       {% if form.department.errors %}
@@ -72,7 +72,7 @@
       <p>
         {{ form.category.label }}
         <br>
-        {{ form.category }}
+        {{ form.category(value=ticket.category) }}
       </p>
 
       {% if form.category.errors %}

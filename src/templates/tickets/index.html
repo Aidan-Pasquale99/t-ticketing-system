@@ -11,9 +11,6 @@
       <a href="{{ url_for('tickets.get_ticket', ticket_id=ticket.id) }}">
         <h2>{{ ticket['ticket_name'] }}</h2>
       </a>
-      {% if current_user.is_admin %}
-      <p>User is admin, delete button to be here</p>
-      {% endif %}
       <span class="badge badge-primary">{{ ticket['create_date'] }}</span>
       <p>{{ ticket['status'] }}</p>
   {% endfor %}

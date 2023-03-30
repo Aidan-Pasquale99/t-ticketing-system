@@ -1,5 +1,4 @@
-{% set active_page = active_page -%}
-
+{% set active_page = active_page|default('index') -%}
 <!-- Navigation -->
 <header class="p-3 text-bg-dark">
   <div class="container">
@@ -8,11 +7,11 @@
         <li>
           <a href="{{ url_for('core.home') }}" class="nav-link px-2 text-secondary">Home</a>
         </li>
-        <li class="{{ 'active' if active_page == 'all_tickets' else '' }}">
-          <a href="{{ url_for('tickets.all_tickets') }}" class="nav-link px-2 text-secondary">All Tickets</a>
+        <li>
+          <a class="{{ 'active_page nav-link px-2' if active_page == 'all_tickets' else 'nav-link px-2 text-secondary' }}" href="{{ url_for('tickets.all_tickets') }}">All Tickets</a>
         </li>
         <li>
-          <a href="{{ url_for('tickets.create_ticket') }}" class="nav-link px-2 text-secondary">Create Ticket</a>
+          <a class="{{ 'active_page nav-link px-2' if active_page == 'create_ticket' else 'nav-link px-2 text-secondary' }}" href="{{ url_for('tickets.create_ticket') }}">Create Ticket</a>
         </li>
       </ul>
 

@@ -28,8 +28,8 @@ from src.accounts.models import User
 login_manager.login_view = "accounts.login"
 
 # create default admin user and my user
-# TODO: not working, investigate
 with app.app_context():
+    db.create_all()
     admin_exists = db.session.query(User).filter_by(email="admin@temenos.com").first()
     if not admin_exists:
         admin_user = User(email="admin@temenos.com", password="temenosadmin", is_admin=True)
