@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>{% block title %} {{ ticket['ticket_name'] }} {% endblock %}</h2>
+    <br>
+
+    <form method="POST" action="{{ url_for('tickets.update_ticket', ticket_id=ticket.id) }}">
+        <button type="submit" class="btn btn-info">Update</button>
+    </form>
+
+    {% if current_user.is_admin %}
+    <form method="POST" action="{{ url_for('tickets.delete_ticket', ticket_id=ticket.id) }}">
+        <button type="submit" class="btn btn-danger">Delete</button>
+    </form>
+    {% endif %}
+
+    <br>
+    <br>
+    <!-- <span class="badge badge-primary">{{ ticket['created_date'] }}</span> -->
+    <div class="container" style="width: 50%; float: left;">
+        <h5>Ticket Description</h5>
+        <p>{{ ticket['ticket_description'] }}</p>
+        <h5>Status</h5>
+        <p>{{ ticket['status'] }}</p>
+        <h5>Due Date</h5>
+        <p>{{ ticket['due_date'] }}</p>
+        <br>        
+    </div>
+    <div class="container" style="width: 50%; float: right;">
+        <h5>Created Date</h5>
+        <p>{{ ticket['created_date'] }}</p>
+        <h5>Department</h5>
+        <p>{{ ticket['department'] }}</p>
+        <h5>Category</h5>
+        <p>{{ ticket['category'] }}</p>
+        <h5>Created By</h5>
+        <p>{{ ticket['created_by'] }}</p>
+    </div>
+{% endblock %}
