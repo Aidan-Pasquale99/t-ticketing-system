@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, date
 from flask import Blueprint, abort, flash, redirect, render_template, request, url_for
 from flask_login import login_required, current_user
 from src.tickets.models import tickets
@@ -38,7 +38,6 @@ def get_ticket(ticket_id):
 @tickets_bp.route("/create_ticket", methods=(['GET','POST']))
 def create_ticket():
     form = CreateTicketForm()
-
     if form.validate_on_submit():
         ticket = tickets(
             ticket_name=form.ticket_name.data,
@@ -51,6 +50,21 @@ def create_ticket():
             )
         db.session.add(ticket)
         db.session.commit()
+
+        # if form.due_date.data < date.today():
+        #     raise Exception('Created date cannot be prior to the current day.')
+        # else:
+        #     ticket = tickets(
+        #         ticket_name=form.ticket_name.data,
+        #         ticket_description=form.ticket_description.data,
+        #         status=form.status.data,
+        #         department=form.department.data,
+        #         category=form.category.data,
+        #         due_date=form.due_date.data,
+        #         created_by = current_user.email
+        #         )
+        #     db.session.add(ticket)
+        #     db.session.commit()
 
         return redirect(url_for('tickets.all_tickets'))
     return render_template("tickets/create_ticket.html", form=form)

@@ -1,3 +1,4 @@
+from datetime import date
 from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, DateField, SelectField, HiddenField
 from wtforms.validators import InputRequired
@@ -50,3 +51,10 @@ class CreateTicketForm(FlaskForm):
     updated_by = HiddenField('updated_by')
 
     updated_date = HiddenField('updated_date')
+
+    # def validate_on_submit(self, extra_validators=None):
+    #     result = super(CreateTicketForm, self).validate()
+    #     if (self.due_date > date.today()):
+    #         return False
+    #     else:
+    #         return result
