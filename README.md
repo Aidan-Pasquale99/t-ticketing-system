@@ -1,5 +1,3 @@
-<!-- TODO: (nice to do) clean up unused imports -->
-<!-- TODO: Due date should not be able to be prior to current date -->
 # T Ticketing System
 
 ## Overview
