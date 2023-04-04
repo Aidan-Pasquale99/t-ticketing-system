@@ -39,4 +39,12 @@ python3 manage.py run
 
 Then go to `http://127.0.0.1:5000` in a web browser.
 
-From here, you can register a new user by clicking `Register now`
+From here, you can register a new regular user by clicking `Register now`
+
+### Admin User
+
+To login as the default admin user, enter the following credentials:
+
+Username: `admin@t.com`
+
+Password: `tadmin`
