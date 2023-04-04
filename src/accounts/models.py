@@ -1,7 +1,5 @@
 from datetime import datetime
-
 from flask_login import UserMixin
-from sqlalchemy import UniqueConstraint
 
 from src import bcrypt, db
 
