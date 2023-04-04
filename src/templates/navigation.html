@@ -1,11 +1,11 @@
-{% set active_page = active_page|default('index') -%}
+{% set active_page = active_page|default("index") -%}
 <!-- Navigation -->
 <header class="p-3 text-bg-dark">
   <div class="container">
     <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
       <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
         <li>
-          <a href="{{ url_for('core.home') }}" class="nav-link px-2 text-secondary">Home</a>
+          <a href="{{ url_for('core.home') }}" class="{{ 'active_page nav-link px-2' if active_page == 'index' else 'nav-link px-2 text-secondary' }}">Home</a>
         </li>
         <li>
           <a class="{{ 'active_page nav-link px-2' if active_page == 'all_tickets' else 'nav-link px-2 text-secondary' }}" href="{{ url_for('tickets.all_tickets') }}">All Tickets</a>
