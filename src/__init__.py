@@ -32,7 +32,7 @@ with app.app_context():
     db.create_all()
     admin_exists = db.session.query(User).filter_by(email="admin@t.com").first()
     if not admin_exists:
-        admin_user = User(email="admin@t.com", password="temenosadmin", is_admin=True)
+        admin_user = User(email="admin@t.com", password="tadmin", is_admin=True)
         db.session.add(admin_user)
         db.session.commit()
     
