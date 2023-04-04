@@ -3,16 +3,16 @@
 
 {% block content %}
 
-  <div style='height:100px;display: flex;flex-direction: column;justify-content: center;text-align: center;'>
+  <div style="height:100px;display: flex;flex-direction: column;justify-content: center;text-align: center;">
       <h1>{% block title %} All Tickets {% endblock %}</h1>
   </div>
   {% for ticket in tickets %}
       <hr>
       <a href="{{ url_for('tickets.get_ticket', ticket_id=ticket.id) }}">
-        <h2>{{ ticket['ticket_name'] }}</h2>
+        <h2>{{ ticket["name"] }}</h2>
       </a>
-      <span class="badge badge-primary">{{ ticket['create_date'] }}</span>
-      <p>{{ ticket['status'] }}</p>
+      <span class="badge badge-primary">{{ ticket["create_date"] }}</span>
+      <p>{{ ticket["status"] }}</p>
   {% endfor %}
 
 {% endblock %}
