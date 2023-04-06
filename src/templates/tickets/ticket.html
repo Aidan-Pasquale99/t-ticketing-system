@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="form-group m-5">
+<div style="margin: 0 auto; width: 60%;">
     <h2>{% block title %} {{ ticket["name"] }} {% endblock %}</h2>
     <br>
 
-    <div style="width: 20%; height: 60px;">
+    <div style="width: 30%; height: 60px;">
         <div style="float: left; height: 50px; width: 110px; margin-right: 5px; text-align: center; line-height: 50px;">
             <a class="width: relative 5%;" href="{{ url_for('tickets.update_ticket', ticket_id=ticket.id) }}">
                 <button style="width: 100px;" type="submit" class="btn btn-primary">Update</button>

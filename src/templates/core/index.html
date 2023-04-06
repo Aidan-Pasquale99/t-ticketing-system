@@ -5,6 +5,7 @@
 <h1 class="text-center" style="padding-bottom: 5%;">Welcome to the t Ticketing System</h1>
 
 {% if tickets_exist %}
+<h2 class="text-center" style="padding-bottom: 2%;">All Tickets Status Overview</h2>
 <div>
   <canvas id="ticketStatusChart" style="margin: 0 auto; width: 40%;"></canvas>
 </div>
@@ -18,14 +19,15 @@
       datasets: [{
         label: '# of Tickets',
         data: [{{ to_do_tickets }}, {{ in_prog_tickets }}, {{ blocked_tickets }}, {{ completed_tickets }}],
-        borderWidth: 5,
+        borderWidth: 2,
+        borderColor: 'rgb(256, 256, 256)',
         backgroundColor: [
         'rgb(46, 134, 193)',
         'rgb(40, 180, 99)',
         'rgb(203, 67, 53)',
         'rgb(212, 172, 13)'
         ],
-      }]
+      }],
     },
   });
 </script>

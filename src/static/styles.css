@@ -100,9 +100,10 @@ button:hover {
 /* Modal Content/Box */
 .modal-content {
   background-color: #fefefe;
-  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+  color: #474e5d;
+  margin: 5% auto 15% auto;
   border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
+  width: 80%;
 }
 
 /* Style the horizontal ruler */
@@ -139,4 +140,135 @@ hr {
   .cancelbtn, .deletebtn {
     width: 100%;
   }
+}
+
+body{
+  background:#eee;
+}
+
+.padding {
+    padding: 10px;
+}
+
+/* GRID */
+.row h3 {
+	color: #666666;
+}
+
+.row.grid {
+	margin-left: 0;
+}
+
+.grid {
+	position: relative;
+	width: 100%;
+	background: #fff;
+	color: #666666;
+	border-radius: 2px;
+	margin-bottom: 25px;
+	box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.grid .grid-header {
+	position: relative;
+	border-bottom: 1px solid #ddd;
+	padding: 15px 10px 10px 20px;
+}
+
+.grid .grid-header:before,
+.grid .grid-header:after {
+	display: table;
+	content: " ";
+}
+
+.grid .grid-header:after {
+	clear: both;
+}
+
+.grid .grid-header span {
+	padding: 0 5px;
+}
+
+.grid .grid-header > .fa {
+	padding: 5px 10px 0 0;
+}
+
+.grid .grid-header > .grid-tools {
+	padding: 4px 10px;
+}
+
+.grid .grid-header > .grid-tools a {
+	color: #999999;
+	padding-left: 10px;
+	cursor: pointer;
+}
+
+.grid .grid-body {
+	padding: 15px 20px 15px 20px;
+	font-size: 0.9em;
+	line-height: 1.9em;
+}
+
+/* SUPPORT TICKET */
+.support ul {
+  list-style: none;
+	padding: 0px;
+}
+
+.support ul li {
+	padding: 8px 10px;
+}
+
+.support ul li a {
+	color: #999;
+	display: block;
+}
+
+.support ul li a:hover {
+	color: #666;
+}
+
+.support ul li.active {
+	background: #0073b7;
+}
+
+.support ul li.active a {
+	color: #fff;
+}
+
+.support ul.support-label li {
+	padding: 2px 0px;
+}
+
+.support h2,
+.support-content h2 {
+	margin-top: 5px;
+}
+
+.support-content .list-group li {
+	padding: 15px 20px 12px 20px;
+	cursor: pointer;
+}
+
+.support-content .list-group li:hover {
+	background: #eee;
+}
+
+.support-content .fa-padding .fa {
+	padding-top: 5px;
+	width: 1.5em;
+}
+
+.support-content .info {
+	color: #777;
+	margin: 0px;
+}
+
+.support-content a {
+	color: #111;
+}
+
+.support-content .info .fa {
+	width: 1.5em;
+	text-align: center;
 }

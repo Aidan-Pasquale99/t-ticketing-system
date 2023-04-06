@@ -15,10 +15,10 @@ def home():
     number_of_tickets = db.session.query(func.count(Ticket.id)).scalar()
     if number_of_tickets > 0:
         # if tickets are present in the database, count the number of tickets in each possible status
-        to_do_tickets = db.session.query(func.count(Ticket.status)).filter(Ticket.status == "to-do").scalar()
-        in_prog_tickets = db.session.query(func.count(Ticket.status)).filter(Ticket.status == "in-progress").scalar()
-        blocked_tickets = db.session.query(func.count(Ticket.status)).filter(Ticket.status == "blocked").scalar()
-        completed_tickets = db.session.query(func.count(Ticket.status)).filter(Ticket.status == "completed").scalar()
+        to_do_tickets = db.session.query(func.count(Ticket.status)).filter(Ticket.status == "To Do").scalar()
+        in_prog_tickets = db.session.query(func.count(Ticket.status)).filter(Ticket.status == "In Progress").scalar()
+        blocked_tickets = db.session.query(func.count(Ticket.status)).filter(Ticket.status == "Blocked").scalar()
+        completed_tickets = db.session.query(func.count(Ticket.status)).filter(Ticket.status == "Completed").scalar()
         tickets_exist = True
         # render home page template, pass in number of tickets in each status to be displayed on the graph
         return render_template("core/index.html", tickets_exist=tickets_exist, to_do_tickets=to_do_tickets, in_prog_tickets=in_prog_tickets, blocked_tickets=blocked_tickets, completed_tickets=completed_tickets)

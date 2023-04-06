@@ -2,7 +2,7 @@
 {% set active_page = "create_ticket" %}
 
 {% block content %}
-<div class="form-group m-5">
+<div style="margin: 0 auto; width: 60%;">
     <h1>{% block title %} Add a New Ticket {% endblock %}</h1>
     <br>
     <form action="{{ url_for('tickets.create_ticket')}}" method="POST">

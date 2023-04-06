@@ -2,17 +2,49 @@
 {% set active_page = "all_tickets" %}
 
 {% block content %}
-
-  <div style="height:100px;display: flex;flex-direction: column;justify-content: center;text-align: center;">
-      <h1>{% block title %} All Tickets {% endblock %}</h1>
-  </div>
-  {% for ticket in tickets %}
-      <hr>
-      <a href="{{ url_for('tickets.get_ticket', ticket_id=ticket.id) }}">
-        <h2>{{ ticket["name"] }}</h2>
-      </a>
-      <span class="badge badge-primary">{{ ticket["create_date"] }}</span>
-      <p>{{ ticket["status"] }}</p>
-  {% endfor %}
-
+    <div class="container">
+    <section class="content">
+      <div class="row">
+        <div class="col-md-9 container">
+          <div class="grid support-content">
+             <div class="grid-body">
+              <h2>All Tickets</h2>
+              <div class="padding"></div>
+              <div class="row">
+                {% for ticket in tickets %}
+                <div class="col-md-12">
+                  <ul class="list-group fa-padding">
+                    <li class="list-group-item" data-toggle="modal">
+                      <a href="{{ url_for('tickets.get_ticket', ticket_id=ticket.id) }}">
+                        <div class="media">
+                          <i class="fa fa-cog pull-left"></i>
+                          <div class="media-body">
+                            <strong style="padding-right: 5px; font-size: medium;">{{ ticket.name }}</strong>
+                            {% if ticket.status == "To Do" %}
+                            <span class="badge text-bg-secondary">TO DO</span>
+                            {% endif %}
+                            {% if ticket.status == "In Progress" %}
+                            <span class="badge text-bg-primary">IN PROGRESS</span>
+                            {% endif %}
+                            {% if ticket.status == "Blocked" %}
+                            <span class="badge text-bg-danger">BLOCKED</span>
+                            {% endif %}
+                            {% if ticket.status == "Completed" %}
+                            <span class="badge text-bg-success">COMPLETED</span>
+                            {% endif %}
+                            <p class="info">Created by {{ ticket.created_by }} at {{ ticket.created_date }}</p>
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    </div>
 {% endblock %}
