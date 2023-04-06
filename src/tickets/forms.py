@@ -14,31 +14,24 @@ class CreateTicketForm(FlaskForm):
         validators=[InputRequired()]        
     )
 
-    status = SelectField(u"Ticket Status", choices=[
-        ("to-do", "To Do"),
-        ("in-progress", "In Progress"),
-        ("blocked", "Blocked"),
-        ("completed", "Completed")
+    status = SelectField(u"Ticket Status", 
+        default='',
+        choices=[
+            ("To Do"),
+            ("In Progress"),
+            ("Blocked"),
+            ("Completed")
         ],
         validators=[InputRequired()]
         )
 
-    department = SelectField(u"Department", choices=[
-        ("product", "Product"),
-        ("it", "IT"),
-        ("sales", "Sales"),
-        ("hr", "HR"),
-        ("finance", "Finance")
-        ],
+    department = SelectField(u"Department",
+        default='',
         validators=[InputRequired()]
         )
     
-    # TODO: (nice to do) options should be restricted based on the department selected above - department table?
-    category = SelectField(u"Category", choices=[
-        ("Development - Coding"),
-        ("Development - Testing"),
-        ("Development - Documenting")
-        ],
+    category = SelectField(u"Category",
+        default='',
         validators=[InputRequired()]
         )
     
