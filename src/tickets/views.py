@@ -21,10 +21,6 @@ def valid_ticket_type(ticket_department, ticket_category):
             return True
         else:
             False
-    # if ticket_category in applicable_task_types:
-    #     return True
-    # else:
-    #     return False
 
 
 @tickets_bp.route("/all_tickets")
@@ -52,11 +48,17 @@ def get_ticket(ticket_id):
         return render_template("tickets/ticket.html", ticket=ticket, ticket_updated=ticket_updated, updated_date=updated_date)
 
 
+# validate that the user-submitted task_type (category) belongs to the selected
 def validate_task_department_pair(task_type_id, department_id):
+    # get the task_type
     task_type = TaskType.query.filter_by(id=task_type_id.id).first()
+    
+    # check that task_type is valid
     if not task_type:
         return False
-    if task_type.department_id is not department_id:
+    
+    # compare the department id of the chosen task_type to the chosen department
+    if task_type.department_id is not department_id.id:
         return False
     return True
 
@@ -67,9 +69,6 @@ def validate_task_department_pair(task_type_id, department_id):
 def create_ticket():
     form = CreateTicketForm()
 
-    # task_type_id = request.form.get('task_type_id')
-    # department_id = request.form.get('department_id')
-    
     # Query the departments and their task types
     departments = Department.query.join(TaskType).all()
 
@@ -107,75 +106,6 @@ def create_ticket():
             return redirect(url_for("tickets.all_tickets"))
 
     return render_template("tickets/create_ticket.html", form=form)
-    # form = CreateTicketForm()
-
-    # # Query the departments and their task types
-    # departments = Department.query.join(TaskType).all()
-
-    # # Populate the form SelectField choices
-    # form.department.choices = [(str(d.id), d.name) for d in departments]
-    # form.category.choices = [(str(tt.id), tt.name) for d in departments for tt in d.task_types]
-
-    # if form.validate_on_submit():
-    #     # validate that the user-inputted due date is not prior to the current date, if it is, 
-    #     # produce an error pop-up and remain on the create ticket page
-    #     if form.due_date.data < datetime.now().date():
-    #         flash("Due Date cannot be prior to the current date", "danger")
-    #         return render_template("tickets/create_ticket.html", form=form)
-        
-    #     department = Department.query.filter_by(id=form.department.data).first()
-    #     applicable_task_types = department.task_types
-
-    #     task_type = TaskType.query.filter_by(id=form.category.data).first()
-    #     applicable_departments = task_type.departments
-
-    #     category_id_int = int(form.data['category'])
-
-    #     valid_category_department = []
-        
-    #     for task in applicable_task_types:
-    #         task_department_id = task.department
-    #         if category_id_int == task_department_id:
-    #             valid_category_department = True
-    #         else:
-    #             valid_category_department = False
-
-    #     if valid_category_department:
-    #         ticket = Ticket(
-    #         name=form.name.data,
-    #         description=form.description.data,
-    #         status=form.status.data,
-    #         department=form.department.data,
-    #         category=form.category.data,
-    #         due_date=form.due_date.data,
-    #         created_by = current_user.email
-    #         )
-    #         db.session.add(ticket)
-    #         db.session.commit()
-    #         return redirect(url_for("tickets.all_tickets"))
-    #     else:
-    #         flash("Ticket Category must belong to the selected Department", "danger")
-            # return render_template("tickets/create_ticket.html", form=form)
-
-        # if int(form.category.data) in applicable_task_types:
-        #     ticket = Ticket(
-        #     name=form.name.data,
-        #     description=form.description.data,
-        #     status=form.status.data,
-        #     department=form.department.data,
-        #     category=form.category.data,
-        #     due_date=form.due_date.data,
-        #     created_by = current_user.email
-        #     )
-        #     db.session.add(ticket)
-        #     db.session.commit()
-        #     return redirect(url_for("tickets.all_tickets"))       
-        
-        # if not valid_ticket_type:
-        #     flash("Task Category field must belong to the Department", "danger")
-        #     return render_template("tickets/create_ticket.html", form=form)
-
-    return render_template("tickets/create_ticket.html", form=form)
 
 
 # update ticket view
@@ -207,5 +137,4 @@ def delete_ticket(ticket_id):
         Ticket.query.filter_by(id=ticket_id).delete()
         db.session.commit()
         flash("Ticket deleted successfully", "success")
-        
     return redirect(url_for("tickets.all_tickets"))

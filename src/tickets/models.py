@@ -35,9 +35,6 @@ class Department(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     name = db.Column(db.String, nullable=False)
 
-    # one-to-many relationship with TaskType
-    # task_types = db.relationship('TaskType', backref='department', lazy=True)
-
 class TaskType(db.Model):
 
     __tablename__ = "task_types"
@@ -45,15 +42,6 @@ class TaskType(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     name = db.Column(db.String(50), nullable=False)
 
-    # Define the relationship with Department
+    # define the relationship with Department
     department_id = db.Column(db.Integer, db.ForeignKey('departments.id'), nullable=False)
     department = db.relationship('Department', backref='task_types')
-
-    # many-to-many relationship with Department model
-    # departments = db.relationship('Department', secondary='department_task_type')
-
-# Define the mapping table between Department and TaskType to get applicable task types for a given department
-# department_task_type = db.Table('department_task_type',
-#     db.Column('department_id', db.Integer, db.ForeignKey('departments.id'), primary_key=True),
-#     db.Column('task_type_id', db.Integer, db.ForeignKey('task_types.id'), primary_key=True)
-# )

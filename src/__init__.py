@@ -30,6 +30,7 @@ login_manager.login_view = "accounts.login"
 with app.app_context():
     # create tables
     db.create_all()
+
     # create default admin user and my user if they do not exist
     admin_exists = db.session.query(User).filter_by(email="admin@t.com").first()
     if not admin_exists:
