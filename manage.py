@@ -1,9 +1,13 @@
-from flask.cli import FlaskGroup
+# from flask.cli import FlaskGroup
 
-from src import app
+# from src import app
 
-cli = FlaskGroup(app)
+# cli = FlaskGroup(app)
 
 
-if __name__ == "__main__":
-    cli()
+# if __name__ == "__main__":
+#     cli()
+
+from src import create_app
+
+app = create_app()

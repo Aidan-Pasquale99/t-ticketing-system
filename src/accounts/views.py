@@ -1,7 +1,8 @@
-from flask import Blueprint, flash, redirect, render_template, request, url_for
+from flask import Blueprint, flash, redirect, render_template, request, url_for, current_app
 from flask_login import login_required, login_user, logout_user, current_user
 
-from src import bcrypt, db
+# from src import bcrypt, db
+
 from src.accounts.models import User
 
 from .forms import LoginForm, RegisterForm
@@ -17,8 +18,8 @@ def register():
     form = RegisterForm(request.form)
     if form.validate_on_submit():
         user = User(email=form.email.data, password=form.password.data)
-        db.session.add(user)
-        db.session.commit()
+        current_app.db.session.add(user)
+        current_app.db.session.commit()
 
         login_user(user)
         flash("Registration successful, you are now logged in.", "success")
@@ -36,7 +37,7 @@ def login():
     form = LoginForm(request.form)
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
-        if user and bcrypt.check_password_hash(user.password, request.form["password"]):
+        if user and current_app.bcrypt.check_password_hash(user.password, request.form["password"]):
             login_user(user)
             return redirect(url_for("core.home"))
         else:
