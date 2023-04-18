@@ -4,35 +4,37 @@ from flask_login import LoginManager
 from flask_bcrypt import Bcrypt
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
+from werkzeug.exceptions import Unauthorized
 
 
-def create_app(config=None):
-    from decouple import config
-    
+login_manager = LoginManager()
+bcrypt = Bcrypt()
+db = SQLAlchemy()
+migrate = Migrate()
+
+def create_app():
     app = Flask(__name__)
     app.config.from_object(config("APP_SETTINGS"))
 
-    login_manager = LoginManager()
-    login_manager.init_app(app)
-    bcrypt = Bcrypt(app)
-    db = SQLAlchemy(app)
-    migrate = Migrate(app, db, render_as_batch=True)
+    login_manager.init_app(app)    
+    bcrypt.init_app(app)
+    db.init_app(app)
+    migrate.init_app(app, db, render_as_batch=True)
 
     with app.app_context():
-        
+            
         from src.accounts.views import accounts_bp
         from src.core.views import core_bp
         from src.tickets.views import tickets_bp
-    
+
         app.register_blueprint(accounts_bp)
         app.register_blueprint(core_bp)
         app.register_blueprint(tickets_bp)
-    
+
         from src.accounts.models import User
-    
+
         login_manager.login_view = "accounts.login"
-    
-    
+
         # create tables
         db.create_all()
 
@@ -101,4 +103,8 @@ def create_app(config=None):
     def load_user(user_id):
         return User.query.filter(User.id == int(user_id)).first()
     
+    @login_manager.unauthorized_handler
+    def unauthorized_handler():
+        raise Unauthorized()
+
     return app
