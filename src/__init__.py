@@ -22,6 +22,7 @@ def create_app():
     migrate.init_app(app, db, render_as_batch=True)
 
     # CSP policy
+    default_policy = "default-src 'self';"
     csp_policy = {
         'style-src': ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com", "https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css", "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"],
         'script-src': ["'self'", "'unsafe-inline'", "'unsafe-eval'", "https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js", "https://cdn.jsdelivr.net/npm/chart.js", "https://code.jquery.com/jquery-3.6.1.min.js", "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.2.1/chart.min.js"],
@@ -29,7 +30,8 @@ def create_app():
 
     # Generate CSP header
     def generate_csp_header(policy):
-        header = "'default-src': "'self'"; ".join([f"{key} {' '.join(value)}" for key, value in policy.items()])
+        header = "; ".join([f"{key} {' '.join(value)}" for key, value in policy.items()])
+        header = default_policy + " " + header
         return header
 
     # Apply CSP header to all responses
