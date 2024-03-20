@@ -27,8 +27,8 @@ def create_app():
     # CSP policy
     default_policy = "default-src 'self'; frame-ancestors 'self'; form-action 'self';"
     csp_policy = {
-        'style-src': ["'self'", "https://fonts.googleapis.com", "https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css", "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"],
-        'script-src': ["'self'", "https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js", "https://cdn.jsdelivr.net/npm/chart.js", "https://code.jquery.com/jquery-3.6.1.min.js", "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.2.1/chart.min.js"],
+        'style-src': ["'self'", "'unsafe-inline'" "https://fonts.googleapis.com", "https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css", "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"],
+        'script-src': ["'self'", "'unsafe-inline'" "https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js", "https://cdn.jsdelivr.net/npm/chart.js", "https://code.jquery.com/jquery-3.6.1.min.js", "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.2.1/chart.min.js"],
     }
 
     # Generate CSP header
