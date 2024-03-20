@@ -21,6 +21,24 @@ def create_app():
     db.init_app(app)
     migrate.init_app(app, db, render_as_batch=True)
 
+    # Define your CSP policy
+    csp_policy = {
+        'default-src': "'self'"
+        # Add more directives as needed based on testing
+    }
+
+    # Generate CSP header
+    def generate_csp_header(policy):
+        header = "; ".join([f"{key} {' '.join(value)}" for key, value in policy.items()])
+        return header
+
+    # Apply CSP header to all responses
+    @app.after_request
+    def apply_csp(response):
+        csp_header = generate_csp_header(csp_policy)
+        response.headers['Content-Security-Policy'] = csp_header
+        return response
+
     with app.app_context():
             
         from src.accounts.views import accounts_bp
