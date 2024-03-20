@@ -30,7 +30,7 @@ def create_app():
 
     # Generate CSP header
     def generate_csp_header(policy):
-        header = "; ".join([f"{key} {' '.join(value)}" for key, value in policy.items()])
+        header = "; ".join([f"{key} {' '.join(value)}" if value else key for key, value in policy.items()])
         return header
 
     # Apply CSP header to all responses
