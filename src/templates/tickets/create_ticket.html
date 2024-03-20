@@ -6,7 +6,7 @@
     <h1>{% block title %} Add a New Ticket {% endblock %}</h1>
     <br>
     <form action="{{ url_for('tickets.create_ticket')}}" method="POST">
-    {{ form.csrf_token }}
+      {{ form.csrf_token }}
     
     {% for field in form %}
     {% if field.type != 'HiddenField' %}

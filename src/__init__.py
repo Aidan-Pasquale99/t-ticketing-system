@@ -1,5 +1,6 @@
 from decouple import config
 from flask import Flask
+from flask_wtf.csrf import CSRFProtect
 from flask_login import LoginManager
 from flask_bcrypt import Bcrypt
 from flask_migrate import Migrate
@@ -11,6 +12,7 @@ login_manager = LoginManager()
 bcrypt = Bcrypt()
 db = SQLAlchemy()
 migrate = Migrate()
+csrf = CSRFProtect()
 
 def create_app():
     app = Flask(__name__)
@@ -20,6 +22,7 @@ def create_app():
     bcrypt.init_app(app)
     db.init_app(app)
     migrate.init_app(app, db, render_as_batch=True)
+    csrf.init_app(app)
 
     # CSP policy
     default_policy = "default-src 'self'; frame-ancestors 'self'; form-action 'self';"
