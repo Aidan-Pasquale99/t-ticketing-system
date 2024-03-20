@@ -25,7 +25,6 @@
         <div id="id02" class="modal">
           <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
           <form class="modal-content" action="{{ url_for('accounts.logout') }}" style="width: 35%;">
-            {{ form.csrf_token }}
             <div class="modal_container">
               <h1>Logout</h1>
               <p>Are you sure you want to logout?</p>
