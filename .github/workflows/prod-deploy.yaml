@@ -9,7 +9,7 @@ permissions:
   contents: read
 
 jobs:
-  lint:
+  deploy:
 
     runs-on: ubuntu-latest
 
