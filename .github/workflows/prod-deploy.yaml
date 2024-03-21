@@ -1,4 +1,4 @@
-name: Pre-Prod Code Linting
+name: Prod Deploy
 
 on:
   push:
