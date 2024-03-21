@@ -1,0 +1,19 @@
+name: Pre-Prod Code Linting
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+
+    runs-on: ubuntu-latest
+
+    steps:    
+    - name: Deploy to Render
+      run: |
+        curl https://api.render.com/deploy/srv-cnsam3acn0vc73eqntg0?key=bMQ2lqhzGqA
