@@ -5,7 +5,7 @@ name: Python application
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "pre-prod" ]
   pull_request:
     branches: [ "main" ]
 
@@ -43,3 +43,9 @@ jobs:
     - name: Test with pytest
       run: |
         python -m pytest
+    - name: Merge to main for auto-deployment if all checks pass
+      if: ${{ github.ref == 'refs/heads/pre-prod' && success() }}
+      run: |
+        git checkout main
+        git merge pre-prod
+        git push
