@@ -35,3 +35,4 @@ class ProductionConfig(Config):
     DEBUG = False
     DEBUG_TB_ENABLED = False
     SESSION_COOKIE_SECURE = True
+    SESSION_COOKIE_SAMESITE = 'Strict'
