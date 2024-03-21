@@ -10,6 +10,9 @@ from .forms import LoginForm, RegisterForm
 accounts_bp = Blueprint("accounts", __name__)
 
 
+# User registration page
+# Allows for the creation of new system non-admin users
+# Data validation is done here to ensure valid credentials have been passed
 @accounts_bp.route("/register", methods=["GET", "POST"])
 def register():
     if current_user.is_authenticated:
@@ -29,6 +32,10 @@ def register():
     return render_template("accounts/register.html", form=form)
 
 
+# Login page
+# Data validation is done here to ensure valid credentials have been passed
+# Use of SQLAlchemy data objects ensures SQL injection attacks will fail
+# UI alerts are used to indicate successful logins and failed attempts
 @accounts_bp.route("/login", methods=["GET", "POST"])
 def login():
     if current_user.is_authenticated:
@@ -46,6 +53,11 @@ def login():
     return render_template("accounts/login.html", form=form)
 
 
+# Logout route
+# Executes the logout function, gives the user a visual confirmation, and returns
+# to the login page
+# This can only be performed by authenticated users due to the @login_required 
+# decorator
 @accounts_bp.route("/logout")
 @login_required
 def logout():

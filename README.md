@@ -1,5 +1,3 @@
-<!-- TODO: Add default ticket records in init.py -->
-
 # T Ticketing System
 
 ## Overview
@@ -48,5 +46,3 @@ To login as the default admin user, enter the following credentials:
 Username: `admin@t.com`
 
 Password: `tadmin`
-
-for GitHub action testing
