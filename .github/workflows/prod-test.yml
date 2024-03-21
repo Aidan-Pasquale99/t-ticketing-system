@@ -3,6 +3,8 @@ name: Prod Test
 on:
   workflow_run:
     workflows: [ "Prod Deploy" ]
+    types:
+      - completed
   workflow_dispatch:
 
 jobs:
