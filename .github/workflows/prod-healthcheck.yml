@@ -1,4 +1,4 @@
-name: Prod Test
+name: Prod Healthcheck
 
 on:
   workflow_run:
