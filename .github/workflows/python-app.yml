@@ -37,7 +37,7 @@ jobs:
     - name: Set env
       run: |
         echo "SECRET_KEY=testkey" >> $GITHUB_ENV
-        echo "APP_SETTINGS=config.ProductionConfig" >> $GITHUB_ENV
+        echo "APP_SETTINGS=config.TestingConfig" >> $GITHUB_ENV
         echo "DATABASE_URL=sqlite:///db.sqlite" >> $GITHUB_ENV
         echo FLASK_APP=src >> $GITHUB_ENV
     - name: Test with pytest
