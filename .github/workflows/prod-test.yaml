@@ -1,4 +1,4 @@
-name: Prod Test and Deploy
+name: Pre-Prod Test
 
 on:
   pull_request:
@@ -39,6 +39,3 @@ jobs:
     - name: Test with pytest
       run: |
         python -m pytest
-    - name: Deploy to Render
-      run: |
-        curl https://api.render.com/deploy/srv-cnsam3acn0vc73eqntg0?key=bMQ2lqhzGqA
